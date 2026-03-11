@@ -11,15 +11,16 @@ export class App {
   protected readonly title = signal('first-project');
   francyperry :string = "Amo Francesco Perrotta";
 
-  btnCheck = signal(true);
+  btnCheck = false;
 
   pisuClick() : void {
 
-    this.btnCheck.set(true);
+    this.btnCheck = true;
 
     setTimeout(() => {      
-      this.btnCheck.set(false);
+      this.btnCheck = false;
     }, 3000 );
   }
 
 }
+
