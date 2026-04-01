@@ -4,7 +4,7 @@ import { Hero } from '../../hero.model';
 @Component({
   selector: 'app-hero-card',
   imports: [],
-  templateUrl: './hero-card.component.html',
+  templateUrl: './hero-card.html',
   styleUrl: './hero-card.css',
 })
 export class HeroCard {
