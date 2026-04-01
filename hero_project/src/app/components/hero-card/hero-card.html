@@ -1,0 +1,13 @@
+<div class="card" [style.background-color]="hero.completata ? 'lightgreen' : 'white'" 
+     style="border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 200px;">
+    
+    <h3>{{ hero.nome }}</h3>
+    <p>Potere: {{ hero.potere }}</p>
+
+    <button (click)="notifyParent()" [disabled]="hero.completata"
+        [style.background-color]="hero.completata ? '#ccc' : '#007bff'"
+        style="color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; display: block;"
+        [style.cursor]="hero.completata ? 'not-allowed' : 'pointer'">
+        {{ hero.completata ? 'Missione Compiuta ✓' : 'Segna come fatta' }}
+    </button>
+</div>
