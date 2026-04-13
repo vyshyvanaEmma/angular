@@ -1,4 +1,4 @@
-import { Component, input, output} from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { Piatto } from '../../../piatto.model';
 
 @Component({
@@ -9,10 +9,10 @@ import { Piatto } from '../../../piatto.model';
 })
 export class DishItem {
   // input 
-  piatto = input.required<Piatto>();
+  @Input({ required: true }) piatto!: Piatto;
 
   //output
-  cambioQuantita = output<number>();
+  @Output() cambioQuantita = new EventEmitter<number>();
 
   modifica(valore: number) {
     this.cambioQuantita.emit(valore);
