@@ -13,12 +13,7 @@ export class HeroEdit {
 
   @Output() onHeroAdd = new EventEmitter<Hero>();
 
-  @Input() hero: Hero = {
-    id: -1,
-    nome: '',
-    potere: '',
-    completata: false
-  }
+  @Input() hero: Hero = {} as Hero;
 
   addHero(){
     this.onHeroAdd.emit(this.hero);
