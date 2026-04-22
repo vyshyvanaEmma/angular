@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Hero } from '../../hero.model';
 import { HeroCard } from '../hero-card/hero-card';
-import { HeroEdit } from "../hero-edit/hero-edit"; 
+import { HeroEdit } from "../hero-edit/hero-edit";
 
 @Component({
   selector: 'app-hero-card-list',
@@ -14,7 +14,7 @@ export class HeroCardList {
 
   totalCompleted: number = 0;
 
-  heroSelected: Hero = {} as Hero; 
+  heroSelected: Hero = {} as Hero;
 
   heroes: Hero[] = [
     { id: 1, nome: 'Spider-Man', potere: 'Ragnatele', completata: false },
@@ -37,8 +37,8 @@ export class HeroCardList {
 
     const hero = this.heroes.find(h => h.id == newHero.id);
 
-    if(!hero){
-       this.heroes.push(newHero);
+    if (!hero) {
+      this.heroes.push(newHero);
     } else {
       this.heroes[this.heroes.indexOf(hero)] = newHero;
     }
