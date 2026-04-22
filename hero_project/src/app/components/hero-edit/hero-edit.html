@@ -8,6 +8,8 @@
 <button 
   type="submit" 
   (click)="addHero()" 
+  [disabled]="!hero.id || !hero.nome || !hero.potere"
+  [style.opacity]="(!hero.id || !hero.nome || !hero.potere) ? 0.5 : 1"
   style="
     background: linear-gradient(135deg, #ff0000 0%, #b32400 100%);
     color: white; 

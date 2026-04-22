@@ -15,7 +15,11 @@ export class HeroEdit {
 
   @Input() hero: Hero = {} as Hero;
 
-  addHero(){
-    this.onHeroAdd.emit(this.hero);
+  addHero() {
+    if (this.hero.id && this.hero.nome && this.hero.potere) {
+      this.onHeroAdd.emit(this.hero);
+    } else {
+      alert("Per favore, compila tutti i campi!");
+    }
   }
 }
