@@ -7,9 +7,8 @@
     (onMissionDone)="markAsDone($event)"
     (click)="heroSelected = h">
   </app-hero-card>
-
 </div>
 
-<p><strong>Missioni completed: </strong>{{ totalCompleted }}</p> <!--se è una funzione scrivo totalCompleted()--> 
+<p><strong>Missioni completate: </strong>{{ totalCompleted }}</p> 
 
 <app-hero-edit [hero]="heroSelected" (onHeroAdd)="addNewHero($event)"></app-hero-edit>
