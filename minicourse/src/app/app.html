@@ -1,0 +1,86 @@
+<div>{{ title }}</div>
+
+@if (x === 10) {
+  <div>x is 10</div>
+} @else if (x === 20) {
+  <div>x is 20</div>
+} @else {
+  <div>x non e' 10 ne 20</div>
+}
+
+@switch (x) {
+  @case (10) {
+    <div>x is 10</div>
+  }
+  @case (20) {
+    <div>x is 20</div>
+  }
+  @default {
+    <div>x non e' 10 ne 20</div>
+  }
+}
+
+@let value = 100;
+
+<div class="students">
+  @for (student of students(); track student.id; let idx = $index, e = $even) {
+    <!-- idx e' un alias di $index, e e' un alias di $even -->
+    <div class="student">
+      @let fn = `${student.fn} ${student.ln}`;
+      <!--{{ student.fn + ' ' + student.ln }}-->
+
+      <div>
+        {{ fn }}
+      </div>
+
+      <div>Current: {{ idx + 1 }} / {{ $count }}</div>
+      <!-- index - per vedere l'indice dell'aray, count per vedere la lungh dell'array -->
+
+      <div>first: {{ $first }} last: {{ $last }} even: {{ e }} odd: {{ $odd }}</div>
+
+      {{ fn }}
+
+      <div>Value: {{ value }}</div>
+    </div>
+  }
+
+  <div>
+    <button (click)="addStudent()">Add student</button>
+    <button (click)="updateStudentInfo(3)">Update student with id 3</button>
+    <button (click)="orderStudentsByRandom()">Order students by random</button>
+  </div>
+
+  {{ value }}
+</div>
+
+<section>
+  <h1>Signals</h1>
+
+  <div>Counter: {{ counter() }}</div>
+
+  <div>Double counter: {{ doubleCounter() }}</div>
+
+  <div>Triple counter: {{ tripleCounter() }}</div>
+
+  <div>
+    <button (click)="increaseCounter()">Increase counter</button>
+    <button (click)="decreaseCounter()">Decrease counter</button>
+    <button (click)="setCounter(10)">Set counter to 10</button>
+  </div>
+
+  <div>
+    @if (counter() > 10) {
+      <div>counter is big</div>
+    }
+  </div>
+
+  <div>
+    <input type="text" [(ngModel)]="text" />
+    Text: {{ text() }}
+  </div>
+
+  <div>
+    <input type="text" [value]="text2()" (input)="setText2($event)" />
+    Text 2: {{ text2() }}
+  </div>
+</section>

@@ -1,0 +1,10 @@
+.students{
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.students .student {
+  padding: 10px;
+  background-color: lightblue;
+}

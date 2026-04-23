@@ -1,0 +1,48 @@
+<div [class.box]="box">   <!--viene assegnato quando box = true-->
+  Content
+</div>
+
+<div [class.box]="boxSignal()">   <!--viene assegnato quando box = true-->
+  Content
+</div>
+<button (click)="toogleBoxSignal()">Toogle boxSignal</button>
+
+<div [class]="boxSignal() ? 'box' : ''">
+  Content
+</div>
+
+<h2>Styles</h2>
+
+<div [style.background-color]="bg()">
+  Content
+</div>
+<button (click)="toogleBg()">Toogle bg</button>
+
+<div [style]="'background-color:' + bg() + ';'">
+  Content
+</div>
+
+<div class="box" [style.width.px]="width()">
+  Content
+</div>
+
+<button (click)="increaseWidth()">Increase width</button>
+
+
+<h2>ngClass</h2>
+
+<button [ngClass]="{
+  'btn': true,
+  'btn-primary': isPrimary(),
+  'btn-danger': isDanger()
+}">Click</button>
+
+<h2>ngStyle</h2>
+
+<div [ngStyle]="{
+  'border': '4px solid',
+  'background-color': bg(),
+  'font-size.px': fontsize
+}">
+  Content
+</div>
