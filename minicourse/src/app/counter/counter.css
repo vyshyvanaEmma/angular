@@ -4,3 +4,13 @@ button {
   border: solid 1;
   cursor: pointer;
 }
+
+.counter-section header {
+  background-color: lightgray;
+  padding: 10 px;
+}
+
+.counter-section footer {
+  background-color: lightpink;
+  padding: 10 px;
+}

@@ -3,11 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { Counter } from './counter/counter';
 import { Box } from './box/box';
+import { Box2 } from './box2/box2';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, Counter, Box],
-  templateUrl: './app3.html',
+  imports: [FormsModule, Counter, Box, Box2],
+  templateUrl: './app4.html',
   styleUrl: './app.css'
 })
 export class App {
@@ -35,6 +36,10 @@ export class App {
 
   text = signal('');
   text2 = signal('');
+
+  startCounter = signal(100)
+
+  number = signal(10)
 
   increaseCounter() {
     this.counter.update(v => v + 1)
@@ -73,5 +78,15 @@ export class App {
     if (e.target instanceof HTMLInputElement) {     // per verificare che l elemento deriva da input html
       this.text2.set(e.target.value)
     }
+  }
+
+  increaseStartCounter(){
+    this.startCounter.update(v => v + 1);
+  }
+
+  messageReceived = signal('')
+
+  onMessageReceived(e: {message: string}) {
+    this.messageReceived.set(e.message)
   }
 }

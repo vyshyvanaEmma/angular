@@ -1,0 +1,23 @@
+<div>
+  {{ description | slice: 0 : 20 | uppercase }}
+</div>
+
+<div>
+  {{ word | capitalize }}
+</div>
+
+<h2>Students</h2>
+
+@for (student of studentsList(); track student.id) {
+  <div>
+    {{ student.fullname }} : {{ student.rate }}
+  </div>
+}
+
+<div>
+  <button (click)="addStudent()">Add student</button>
+</div>
+
+<div>
+  Best: {{ bestStudent()?.fullname }}
+</div>

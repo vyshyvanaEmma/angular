@@ -1,6 +1,30 @@
 <section>
+  <h2>{{ title() }}</h2>
+
+  <div>
+    <!--ng-content - serve per usare i contenuti esterni-->
+    <ng-content></ng-content>
+  </div>
+
+  <section class="counter-section">
+    <header>
+      <ng-content select="[header]"></ng-content>
+    </header>
+    <footer>
+      <ng-content select="[footer]"></ng-content>
+    </footer>
+  </section>
+
   Counter: {{ counter() }}
   <div>
     <button (click)="increaseCounter()">Increase number</button>
+  </div>
+
+  <div>
+    <button (click)="increaseNum()">Increase num</button>
+  </div>
+
+  <div>
+    <button (click)="sendMessage()">Send message to parent</button>
   </div>
 </section>

@@ -1,1 +1,36 @@
-<counter />
+<div>
+  Number: {{ number() }}
+</div>
+
+<div>
+  Message received: {{ messageReceived() }}
+</div>
+
+
+<counter [title]="'Counter 1'" [start]="startCounter()"/>
+<button (click)="increaseStartCounter()">Increase start counter</button>
+
+
+<counter [title]="'Counter 2'" [(num)]="number" (messageSent)="onMessageReceived($event)" />
+
+<counter [title]="'Counter 3'">
+  <div>Counter content</div>
+</counter>
+
+<counter [title]="'Counter 4'">
+  <div>Counter content</div>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+</counter>
+
+<counter [title]="'Counter 5'">
+  <div>Counter content</div>
+  <div header>Counter header</div>
+  <div footer>Counter footer</div>
+</counter>
+
+
