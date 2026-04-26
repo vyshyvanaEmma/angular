@@ -1,0 +1,7 @@
+<div class="edit-box">
+  <input [(ngModel)]="id" type="number" placeholder="id eroe" />
+  <input [(ngModel)]="nome" type="text" placeholder="nome eroe" />
+  <input [(ngModel)]="potere" type="text" placeholder="potere eroe" />
+
+  <button (click)="aggiungi()" [disabled]="!nome || !potere || !id">Aggiungi Eroe</button>
+</div>

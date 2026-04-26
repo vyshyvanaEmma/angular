@@ -1,0 +1,10 @@
+<h1>Mission Control Center</h1>
+<div class="container">
+  @for (h of heroes(); track h.id) {
+    <hero-card [hero]="h" (onMissionDone)="markAsDone($event)">
+    </hero-card>
+  }
+</div>
+
+<hero-edit (onAddHero)="addHero($event)"></hero-edit>
+<p>Missioni completate: {{ totalCompleted() }}</p>

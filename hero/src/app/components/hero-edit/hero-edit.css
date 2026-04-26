@@ -1,0 +1,51 @@
+.edit-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 5px solid #3498db;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  margin-bottom: 50px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.edit-box input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s;
+  flex: 1;
+}
+
+.edit-box input:focus {
+  border-color: #3498db;
+}
+
+.edit-box button {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:disabled {
+  background-color: #bdc3c7;
+  color: #7f8c8d;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: scale(1);
+  box-shadow: none;
+}
+
+button:not(:disabled):hover {
+  background-color: #219150;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
