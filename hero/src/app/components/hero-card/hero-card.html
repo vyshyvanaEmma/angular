@@ -1,5 +1,7 @@
 <div class="card" [style.background-color]="hero().completata ? 'lightgreen' : 'white'">
   <h3>{{ hero().nome }}</h3>
   <p>Potere: {{ hero().potere }}</p>
-  <button (click)="notifyParent()" [disabled]="hero().completata">Missione Compiuta</button>
+
+    <!-- Usa $event.stopPropagation() per non attivare il click della card -->
+  <button (click)="$event.stopPropagation(); notifyParent()" [disabled]="hero().completata">Missione Compiuta</button>
 </div>

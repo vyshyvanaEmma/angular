@@ -1,7 +1,9 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Hero } from '../../hero.model';
 import { HeroCard } from "../hero-card/hero-card";
 import { HeroEdit } from "../hero-edit/hero-edit";
+import { HeroService } from '../../services/hero-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'hero-list',
@@ -10,23 +12,24 @@ import { HeroEdit } from "../hero-edit/hero-edit";
   styleUrl: './hero-list.css',
 })
 export class HeroList {
-  heroes = signal<Hero[]>([
-    { id: 1, nome: 'Francesco', potere: 'Pisu', completata: false },
-    { id: 2, nome: 'Emma', potere: 'Rabbia', completata: false },
-    { id: 3, nome: 'Fibi', potere: 'Belezza', completata: false },
-  ])
+  
+  heroService = inject(HeroService)
+  private router = inject(Router)
 
-  totalCompleted = computed(() => this.heroes().filter(h => h.completata).length);
 
-  selectedHero = signal<Hero | null>(null)
+  totalCompleted = computed(() => this.heroService.heroes().filter(h => h.completata).length);
+  
+  vaiAEdit(id: number){
+    this.router.navigate(['/edit', id])
+  }
+  
+  /*selectedHero = signal<Hero | null>(null)
 
   selectHero(hero: Hero){
     this.selectedHero.set(hero);
   }
 
-  markAsDone(heroId: number) {
-    this.heroes.update(curHeroes => curHeroes.map(h => h.id === heroId ? { ...h, completata: true } : h))
-  }
+
 
   addHero(dataHero: { id: number, nome: string, potere: string }) {
 
@@ -50,12 +53,12 @@ export class HeroList {
       return
     }*/
 
-    const newHero: Hero = {
+    /*const newHero: Hero = {
       ...dataHero,
       completata: false
     }
 
     //per aggiungere un nuovo eroe al array (bisogna fare sempre update siccome si usa signal)
     this.heroes.update(liste => [...liste, newHero])
-  }
+  }*/
 }

@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<nav>
+    <!-- routerLinkActive applica la classe CSS quando il percorso è attivo -->
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+    <a routerLink="/edit" routerLinkActive="active">Aggiunta</a>
+</nav>
+
+<div class="container-outlet">
+    <router-outlet></router-outlet>
+</div>
