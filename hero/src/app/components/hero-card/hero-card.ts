@@ -1,9 +1,10 @@
 import { Component, EventEmitter, input, Output } from '@angular/core';
 import { Hero } from '../../hero.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'hero-card',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './hero-card.html',
   styleUrl: './hero-card.css',
 })

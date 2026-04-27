@@ -1,51 +1,71 @@
+
 .edit-box {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  border-left: 5px solid #3498db;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  margin-bottom: 50px;
+  background: rgba(0, 0, 0, 0.7); 
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 30px;
+  border: 2px solid #ff00ff;
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.3), inset 0 0 15px rgba(255, 0, 255, 0.2);
+  margin: 40px auto;
   display: flex;
-  gap: 15px;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column; 
+  gap: 20px;
+  max-width: 500px;
+  animation: boxGlow 4s infinite alternate;
+}
+
+@keyframes boxGlow {
+  from { border-color: #ff00ff; box-shadow: 0 0 20px rgba(255, 0, 255, 0.3); }
+  to { border-color: #00ffc6; box-shadow: 0 0 40px rgba(0, 255, 198, 0.5); }
 }
 
 .edit-box input {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border: 2px solid #444;
+  border-radius: 15px;
+  color: #00ffc6;
+  font-size: 1.1rem;
   outline: none;
-  transition: border-color 0.3s;
-  flex: 1;
-}
-
-.edit-box input:focus {
-  border-color: #3498db;
-}
-
-.edit-box button {
-  background-color: #27ae60;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-button:disabled {
-  background-color: #bdc3c7;
-  color: #7f8c8d;
-  cursor: not-allowed;
-  opacity: 0.7;
-  transform: scale(1);
-  box-shadow: none;
+.edit-box input::placeholder {
+  color: rgba(0, 255, 198, 0.5);
 }
 
-button:not(:disabled):hover {
-  background-color: #219150;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+.edit-box input:focus {
+  border-color: #00ffc6;
+  background: rgba(0, 255, 198, 0.05);
+  box-shadow: 0 0 15px rgba(0, 255, 198, 0.4);
+}
+
+.edit-box button {
+  background: linear-gradient(45deg, #ff00ff, #700b97);
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 15px;
+  font-weight: 900;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-top: 10px;
+}
+
+.edit-box button:not(:disabled):hover {
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 0, 255, 0.5);
+  background: linear-gradient(45deg, #00ffc6, #007bff);
+}
+
+.edit-box button:disabled {
+  background: #222;
+  color: #555;
+  border: 1px solid #333;
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: scale(1);
 }

@@ -1,7 +1,11 @@
-<div class="card" [style.background-color]="hero().completata ? 'lightgreen' : 'white'">
-  <h3>{{ hero().nome }}</h3>
-  <p>Potere: {{ hero().potere }}</p>
+<div class="card" [class.completed]="hero().completata">
+  <div class="hero-icon">{{ hero().completata ? '🌟' : '⚡' }}</div>
+  <h3>{{ hero().nome | uppercase }}</h3>
+  <p class="power-text">💥 Super Potere: <span>{{ hero().potere }}</span></p>
 
-    <!-- Usa $event.stopPropagation() per non attivare il click della card -->
-  <button (click)="$event.stopPropagation(); notifyParent()" [disabled]="hero().completata">Missione Compiuta</button>
+  <button class="crazy-button" 
+          (click)="$event.stopPropagation(); notifyParent()" 
+          [disabled]="hero().completata">
+    {{ hero().completata ? 'MISSIONE COMPIUTA! 🎉' : 'VAI IN MISSIONE! 🔥' }}
+  </button>
 </div>

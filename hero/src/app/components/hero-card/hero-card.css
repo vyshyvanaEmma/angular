@@ -1,38 +1,69 @@
 .card {
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 12px;
-  background-color: white;
-  transition: transform 0.2s, box-shadow 0.2s;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 25px;
+  text-align: center;
   cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-15px) rotate(3deg);
+  border-color: #00ffc6;
+  box-shadow: 0 15px 30px rgba(0, 255, 198, 0.3);
 }
+
+.card.completed {
+  background: linear-gradient(135deg, rgba(0, 255, 128, 0.2), rgba(0, 128, 255, 0.2));
+  border-color: #00ff80;
+}
+
+.hero-icon { font-size: 3rem; margin-bottom: 10px; }
 
 h3 {
-  margin: 0 0 10px 0;
-  color: #333;
+  font-size: 1.5rem;
+  margin: 10px 0;
+  color: #fff;
+  letter-spacing: 1px;
 }
 
-p {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 15px;
-}
+.power-text { color: #ccc; font-style: italic; }
+.power-text span { color: #ff00ff; font-weight: bold; }
 
-button {
-  background-color: #3498db;
-  color: white;
+.crazy-button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
   border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #00ffc6, #007bff);
+  color: white;
+  font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-button:disabled {
-  background-color: #bdc3c7;
-  cursor: not-allowed;
+.crazy-button:hover:not(:disabled) {
+  filter: brightness(1.2);
+  letter-spacing: 2px;
+  box-shadow: 0 0 15px #00ffc6;
 }
+
+.crazy-button:disabled {
+  background: #444;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+@keyframes flash-green {
+  0% { box-shadow: 0 0 0px #00ffc6; }
+  50% { box-shadow: 0 0 50px #00ffc6; }
+  100% { box-shadow: 0 0 0px #00ffc6; }
+}
+
+.card.completed {
+  animation: flash-green 0.6s ease-out;
+}
+
