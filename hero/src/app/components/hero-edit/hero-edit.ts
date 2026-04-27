@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Hero } from '../../hero.model';
 
@@ -8,22 +8,38 @@ import { Hero } from '../../hero.model';
   templateUrl: './hero-edit.html',
   styleUrl: './hero-edit.css',
 })
-export class HeroEdit {
+export class HeroEdit implements OnChanges {
+
+  // riceve l eroe da modificare
+  @Input() editHero: Hero | null = null;
+
   nome = ''
-  potere =''
-  id = -1;
+  potere = ''
+  id: number | null = null;
 
   @Output() onAddHero = new EventEmitter<Omit<Hero, 'completata'>>()
 
-  aggiungi(){
-    if(this.nome && this.potere && this.id !== -1){
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['editHero'] && this.editHero) {
+      this.id = this.editHero.id
+      this.nome = this.editHero.nome
+      this.potere = this.editHero.potere
+    }
+  }
+
+  aggiungi() {
+    if (this.nome && this.potere && this.id !== null) {
       this.onAddHero.emit({ id: this.id, nome: this.nome, potere: this.potere })
 
-      this.id = -1;
-      this.nome = ''
-      this.potere =''
-    } else{
+      this.resetForm()
+    } else {
       alert("Inserisci tutti i dati e un id valido")
     }
+  }
+
+  resetForm() {
+    this.id = null;
+    this.nome = '';
+    this.potere = '';
   }
 }
