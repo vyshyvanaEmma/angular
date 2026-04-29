@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, OnChanges, Output, signal, Signal, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Hero } from '../../hero.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, } from '@angular/router';
 import { HeroService } from '../../services/hero-service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
@@ -21,20 +21,20 @@ export class HeroEdit /*implements OnChanges*/ {
 
   hero: Signal<Hero> = signal({} as Hero);
 
-  constructor (private route: ActivatedRoute, private heroService: HeroService) {
+  constructor(private route: ActivatedRoute, private heroService: HeroService) {
     const idParam = this.route.snapshot.paramMap.get('id')
 
     if (idParam) {
-      this.hero = toSignal(this.heroService.getHeroe(idParam), {initialValue: {} as Hero});
+      this.hero = toSignal(this.heroService.getHeroe(idParam), { initialValue: {} as Hero });
     }
   }
 
-  
 
 
-  ngOnInit() {
+
+  /*ngOnInit() {
     // legge id dal param
-  }
+  }*/
 
   /*@Output() onAddHero = new EventEmitter<Omit<Hero, 'completata'>>()
 
@@ -47,6 +47,13 @@ export class HeroEdit /*implements OnChanges*/ {
   }*/
 
   aggiungi() {
+
+    const heroData = this.hero();
+    if (heroData._id) {
+      this.heroService.modifyHero(heroData._id, heroData).subscribe(() => {
+        // Torna alla lista dopo la modifica
+      });
+    }
     /*
     if (this.nome && this.potere) {
 
@@ -63,9 +70,9 @@ export class HeroEdit /*implements OnChanges*/ {
       this.router.navigate(['/'])
       */
 
-      /*this.onAddHero.emit({ id: this.id, nome: this.nome, potere: this.potere })
+    /*this.onAddHero.emit({ id: this.id, nome: this.nome, potere: this.potere })
 
-      this.resetForm()*/
+    this.resetForm()*/
   }
 
   /*resetForm() {

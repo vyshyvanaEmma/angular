@@ -28,19 +28,19 @@ export class HeroList {
   }
 
   markAsDone(heroId: string) {
-    const heroToUpdate = this.heroes().find(h => h._id === heroId)
+    const heroToUpdate = this.heroes().find(h => h._id === heroId);
 
     if (heroToUpdate) {
-      const updateHero = { ...heroToUpdate, completata: true }
+      // Creiamo l'oggetto aggiornato
+      const updatedHero = { ...heroToUpdate, completata: true };
 
-      this.heroService.modifyHero(heroId, updateHero).subscribe({
+      this.heroService.modifyHero(heroId, updatedHero).subscribe({
         next: () => {
-          console.log('Missione completata')
-
-          window.location.reload()
+          console.log('Missione completata con successo!');
+          window.location.reload();
         },
         error: (err) => console.error('Errore durante la missione:', err)
-      })
+      });
     }
   }
 

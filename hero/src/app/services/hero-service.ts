@@ -31,7 +31,7 @@ export class HeroService {
     return this.http.get<Hero[]>(this.apiUrl)
   }
 
-  
+
   getHeroe(_id: string): Observable<Hero> {
     return this.http.get<Hero>(this.apiUrl + `/${_id}`)
   }
@@ -40,11 +40,12 @@ export class HeroService {
 
   addHero(hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.apiUrl, hero)
-  } 
+  }
 
   //put - per modificare gli eroi
-  modifyHero(id: number, hero: Hero) : Observable<Hero>{
-    return this.http.put<Hero>(`${this.apiUrl}/${id}`, hero)
+  modifyHero(id: string, hero: Hero): Observable<Hero> {
+    const { _id, ...heroDataWithoutId } = hero;
+    return this.http.put<Hero>(`${this.apiUrl}/${id}`, heroDataWithoutId);
   }
 
 }
