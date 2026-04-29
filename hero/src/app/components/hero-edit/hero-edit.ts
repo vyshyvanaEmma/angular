@@ -1,44 +1,39 @@
-import { Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, Output, signal, Signal, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Hero } from '../../hero.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HeroService } from '../../services/hero-service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'hero-edit',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './hero-edit.html',
   styleUrl: './hero-edit.css',
 })
 export class HeroEdit /*implements OnChanges*/ {
 
 
-  // per leggere i parametri dell'URL
-  private route = inject(ActivatedRoute)
-  private router = inject(Router)
-  private heroService = inject(HeroService)
 
   /*// riceve l eroe da modificare
   @Input() editHero: Hero | null = null;*/
 
-  nome = ''
-  potere = ''
-  id: number | null = null;
+  hero: Signal<Hero> = signal({} as Hero);
 
-
-  ngOnInit(){
-    // legge id dal param
+  constructor (private route: ActivatedRoute, private heroService: HeroService) {
     const idParam = this.route.snapshot.paramMap.get('id')
-    
-    if(idParam) {
-      const hero = this.heroService.heroes().find(h => h.id === +idParam)
 
-      if(hero){
-        this.id = hero.id
-        this.nome = hero.nome
-        this.potere = hero.potere
-      }
+    if (idParam) {
+      this.hero = toSignal(this.heroService.getHeroe(idParam), {initialValue: {} as Hero});
     }
+  }
+
+  
+
+
+  ngOnInit() {
+    // legge id dal param
   }
 
   /*@Output() onAddHero = new EventEmitter<Omit<Hero, 'completata'>>()
@@ -52,22 +47,25 @@ export class HeroEdit /*implements OnChanges*/ {
   }*/
 
   aggiungi() {
-    if (this.nome && this.potere && this.id !== null) {
-      
-      this.heroService.addOrUpdate({
-        id: this.id, 
+    /*
+    if (this.nome && this.potere) {
+
+      this.heroService.addHero({
         nome: this.nome,
         potere: this.potere
-      })
+      } as Hero).subscribe({
+        next: (savedHero) => {
+          console.log('Eroe aggiunto:', savedHero);
+        },
+        error: (err) => console.error('Errore nell\'aggiunta eroe', err)
+      });
 
       this.router.navigate(['/'])
-      
+      */
+
       /*this.onAddHero.emit({ id: this.id, nome: this.nome, potere: this.potere })
 
       this.resetForm()*/
-    } /*else {
-      alert("Inserisci tutti i dati e un id valido")
-    }*/
   }
 
   /*resetForm() {

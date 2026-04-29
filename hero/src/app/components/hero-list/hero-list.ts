@@ -4,6 +4,7 @@ import { HeroCard } from "../hero-card/hero-card";
 import { HeroEdit } from "../hero-edit/hero-edit";
 import { HeroService } from '../../services/hero-service';
 import { Router } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'hero-list',
@@ -12,17 +13,37 @@ import { Router } from '@angular/router';
   styleUrl: './hero-list.css',
 })
 export class HeroList {
-  
+
   heroService = inject(HeroService)
   private router = inject(Router)
 
 
-  totalCompleted = computed(() => this.heroService.heroes().filter(h => h.completata).length);
-  
-  vaiAEdit(id: number){
+  heroes = toSignal(this.heroService.getHeroes(), { initialValue: [] });
+
+
+  totalCompleted = computed(() => this.heroes().filter(h => h.completata).length);
+
+  vaiAEdit(id: string) {
     this.router.navigate(['/edit', id])
   }
-  
+
+  markAsDone(heroId: string) {
+    const heroToUpdate = this.heroes().find(h => h._id === heroId)
+
+    if (heroToUpdate) {
+      const updateHero = { ...heroToUpdate, completata: true }
+
+      this.heroService.modifyHero(heroId, updateHero).subscribe({
+        next: () => {
+          console.log('Missione completata')
+
+          window.location.reload()
+        },
+        error: (err) => console.error('Errore durante la missione:', err)
+      })
+    }
+  }
+
   /*selectedHero = signal<Hero | null>(null)
 
   selectHero(hero: Hero){
@@ -53,12 +74,12 @@ export class HeroList {
       return
     }*/
 
-    /*const newHero: Hero = {
-      ...dataHero,
-      completata: false
-    }
+  /*const newHero: Hero = {
+    ...dataHero,
+    completata: false
+  }
 
-    //per aggiungere un nuovo eroe al array (bisogna fare sempre update siccome si usa signal)
-    this.heroes.update(liste => [...liste, newHero])
-  }*/
+  //per aggiungere un nuovo eroe al array (bisogna fare sempre update siccome si usa signal)
+  this.heroes.update(liste => [...liste, newHero])
+}*/
 }

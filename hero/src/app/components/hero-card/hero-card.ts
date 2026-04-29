@@ -12,10 +12,10 @@ export class HeroCard {
 
   hero = input.required<Hero>();
 
-  @Output() onMissionDone = new EventEmitter<number>();
+  @Output() onMissionDone = new EventEmitter<string>();
 
 
   notifyParent() {
-    this.onMissionDone.emit(this.hero().id);
+    this.onMissionDone.emit(this.hero()._id);
   }
 }

@@ -1,16 +1,16 @@
 import { Injectable, signal } from '@angular/core';
 import { Hero } from '../hero.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HeroService {
-  heroes = signal<Hero[]>([
-    { id: 1, nome: 'Francesco', potere: 'Pisu', completata: false },
-    { id: 2, nome: 'Emma', potere: 'Rabbia', completata: false },
-    { id: 3, nome: 'Fibi', potere: 'Belezza', completata: false },
-  ])
 
+
+  /* 
   addOrUpdate(dataHero: Omit<Hero, 'completata'>) {
     this.heroes.update(list => {
       const index = list.findIndex(h => h.id === dataHero.id);
@@ -19,9 +19,32 @@ export class HeroService {
       }
       return [...list, { ...dataHero, completata: false }];
     });
+  }*/
+
+  private apiUrl = 'https://crudcrud.com/api/ed594eee9ac84067a1e3f67f425cd480/heroes';
+
+  constructor(private http: HttpClient) { }
+
+  // get - per prende gli eroi
+
+  getHeroes(): Observable<Hero[]> {
+    return this.http.get<Hero[]>(this.apiUrl)
   }
 
-  markAsDone(id: number) {
-    this.heroes.update(list => list.map(h => h.id === id ? { ...h, completata: true } : h));
+  
+  getHeroe(_id: string): Observable<Hero> {
+    return this.http.get<Hero>(this.apiUrl + `/${_id}`)
   }
+
+  // post - per aggiungere un eroe
+
+  addHero(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.apiUrl, hero)
+  } 
+
+  //put - per modificare gli eroi
+  modifyHero(id: number, hero: Hero) : Observable<Hero>{
+    return this.http.put<Hero>(`${this.apiUrl}/${id}`, hero)
+  }
+
 }

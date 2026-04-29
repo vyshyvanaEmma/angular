@@ -1,7 +1,10 @@
 <div class="edit-box">
-  <input [(ngModel)]="id" type="number" placeholder="id eroe" />
-  <input [(ngModel)]="nome" type="text" placeholder="nome eroe" />
-  <input [(ngModel)]="potere" type="text" placeholder="potere eroe" />
+  <input *ngIf="hero()._id" [disabled]="true" [(ngModel)]="hero()._id" type="text" placeholder="id eroe" />
+  <input [(ngModel)]="hero().nome" type="text" placeholder="nome eroe" />
+  <input [(ngModel)]="hero().potere" type="text" placeholder="potere eroe" />
 
-  <button (click)="aggiungi()" [disabled]="!nome || !potere || !id">Aggiungi Eroe</button>
+  <button (click)="aggiungi()" [disabled]="!hero().nome || !hero().potere "> {{ hero()._id ? 'Modifica Eroe' : 'Aggiungi Eroe' }}</button>
 </div>
+
+
+{{hero() | json}}

@@ -1,16 +1,16 @@
 <h1 class="crazy-title">🛸 MISSION CONTROL CENTER 🛸</h1>
 
 <div class="container">
-  @for (h of heroService.heroes(); track h.id) {
+  @for (h of heroes(); track h._id) {
     <hero-card class="floating-card" 
                [hero]="h" 
-               (onMissionDone)="heroService.markAsDone($event)" 
-               (click)="vaiAEdit(h.id)">
+               (onMissionDone)="markAsDone($event)" 
+               (click)="vaiAEdit(h._id)">
     </hero-card>
   }
 </div>
 
 <div class="stats-box">
-  <p>🏆 Eroi leggendari pronti: {{ totalCompleted() }} / {{ heroService.heroes().length }} 🏆</p>
-  <progress [value]="totalCompleted()" [max]="heroService.heroes().length"></progress>
+  <p>🏆 Eroi leggendari pronti: {{ totalCompleted() }} / {{ heroes().length }} 🏆</p>
+  <progress [value]="totalCompleted()" [max]="heroes().length"></progress>
 </div>
