@@ -21,7 +21,7 @@ export class HeroService {
     });
   }*/
 
-  private apiUrl = 'https://crudcrud.com/api/ed594eee9ac84067a1e3f67f425cd480/heroes';
+  private apiUrl = 'https://crudcrud.com/api/fc8f7c4d9c344f83b7adb91e0180b564/heroes';
 
   constructor(private http: HttpClient) { }
 
