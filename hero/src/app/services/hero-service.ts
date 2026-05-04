@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { Hero } from '../hero.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class HeroService {
     });
   }*/
 
-  private apiUrl = 'https://crudcrud.com/api/fc8f7c4d9c344f83b7adb91e0180b564/heroes';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
