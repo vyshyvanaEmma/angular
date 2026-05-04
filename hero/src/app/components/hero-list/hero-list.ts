@@ -14,6 +14,13 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class HeroList {
 
+  //per animazione
+  isAllDone = computed(() => this.heroes().length > 0 && this.totalCompleted() === this.heroes().length);
+
+  emojiRain = Array.from({ length: 40 }, (_, i) => i);
+  emojis = ['🚀', '⭐', '🦸', '🏆', '✨', '🛸', '💎'];
+
+
   heroService = inject(HeroService)
   private router = inject(Router)
 

@@ -1,16 +1,30 @@
-<h1 class="crazy-title">🛸 MISSION CONTROL CENTER 🛸</h1>
+@if (isAllDone()) {
+  <div class="emoji-rain-container">
+    @for (i of emojiRain; track i) {
+      <span class="falling-emoji" 
+            [style.--delay]="(i * 0.2) + 's'" 
+            [style.--left]="(i * 7.7) % 100 + '%'">
+        {{ emojis[i % emojis.length] }}
+      </span>
+    }
+  </div>
+}
+<div [class.all-completed]="totalCompleted() === heroes().length && heroes().length > 0">
+  
+  <h1 class="crazy-title">🛸 MISSION CONTROL CENTER 🛸</h1>
 
-<div class="container">
-  @for (h of heroes(); track h._id) {
-    <hero-card class="floating-card" 
-               [hero]="h" 
-               (onMissionDone)="markAsDone($event)" 
-               (click)="vaiAEdit(h._id)">
-    </hero-card>
-  }
-</div>
+  <div class="container">
+    @for (h of heroes(); track h._id) {
+      <hero-card class="floating-card" 
+                 [hero]="h" 
+                 (onMissionDone)="markAsDone($event)" 
+                 (click)="vaiAEdit(h._id)">
+      </hero-card>
+    }
+  </div>
 
-<div class="stats-box">
-  <p>🏆 Eroi leggendari pronti: {{ totalCompleted() }} / {{ heroes().length }} 🏆</p>
-  <progress [value]="totalCompleted()" [max]="heroes().length"></progress>
+  <div class="stats-box">
+    <p>🏆 Eroi leggendari pronti: {{ totalCompleted() }} / {{ heroes().length }} 🏆</p>
+    <progress [value]="totalCompleted()" [max]="heroes().length"></progress>
+  </div>
 </div>

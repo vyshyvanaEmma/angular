@@ -13,7 +13,8 @@
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
   margin: 40px 0;
-  justify-content: center;
+  background: transparent; 
+  padding: 20px;
 }
 
 h1 {
@@ -22,4 +23,139 @@ h1 {
   text-shadow: 0 0 15px #00ffc6;
   font-size: 3rem;
   margin-bottom: 20px;
+}
+
+.stats-box {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border: 2px solid #00ffc6;
+  border-radius: 20px;
+  padding: 25px;
+  margin-top: 50px;
+  box-shadow: 0 0 20px rgba(0, 255, 198, 0.2), inset 0 0 15px rgba(0, 255, 198, 0.1);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.5s ease;
+}
+
+.stats-box p {
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+progress {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  border-radius: 50px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 255, 198, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+progress::-webkit-progress-bar {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 50px;
+}
+
+progress::-webkit-progress-value {
+  background: linear-gradient(90deg, #00ffc6, #ff00ff, #00ffc6);
+  background-size: 200% auto;
+  border-radius: 50px;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+  animation: gradient-move 3s linear infinite; 
+  transition: width 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.all-completed .stats-box {
+  border-color: #ff00ff;
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
+  transform: scale(1.02);
+}
+
+
+.all-completed {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  animation: none;
+}
+.all-completed h1 {
+  animation: title-glow 1.5s infinite alternate;
+}
+
+@keyframes ultra-glow {
+  from { box-shadow: 0 0 10px #00ffc6; }
+  to { box-shadow: 0 0 50px #ff00ff, inset 0 0 20px #00ffc6; }
+}
+
+@keyframes flash {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0.7; transform: scale(1.1); }
+}
+
+@keyframes title-glow {
+  from { text-shadow: 0 0 10px #00ffc6; }
+  to { text-shadow: 0 0 30px #ff00ff, 0 0 10px #00ffc6; }
+}
+
+progress[value="100"]::-webkit-progress-value, 
+progress:not([value])::-webkit-progress-bar {
+  background-image: linear-gradient(90deg, #00ffc6, #ff00ff);
+  box-shadow: 0 0 20px #ff00ff;
+}
+
+.emoji-rain-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; 
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.falling-emoji {
+  position: absolute;
+  top: -50px;
+  left: var(--left);
+  font-size: 2.5rem;
+  user-select: none;
+  animation: fall-animation 4s linear infinite;
+  animation-delay: var(--delay);
+  opacity: 0;
+}
+
+@keyframes fall-animation {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.all-completed .floating-card {
+  filter: drop-shadow(0 0 10px #00ffc6);
 }
