@@ -159,3 +159,12 @@ progress:not([value])::-webkit-progress-bar {
 .all-completed .floating-card {
   filter: drop-shadow(0 0 10px #00ffc6);
 }
+
+.floating-card {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.floating-card.ng-removing {
+  opacity: 0;
+  transform: scale(0.5) translateY(-20px);
+}

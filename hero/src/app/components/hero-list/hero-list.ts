@@ -51,6 +51,18 @@ export class HeroList {
     }
   }
 
+  rimuoviEroe(id: string) {
+    if (!id) {
+      console.error("ID non trovato!");
+      return;
+    }
+
+    this.heroService.deleteHero(id).subscribe({
+      next: () => window.location.reload(),
+      error: (err) => console.error("Errore API:", err)
+    });
+  }
+
   /*selectedHero = signal<Hero | null>(null)
 
   selectHero(hero: Hero){

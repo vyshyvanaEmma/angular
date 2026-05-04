@@ -48,4 +48,9 @@ export class HeroService {
     return this.http.put<Hero>(`${this.apiUrl}/${id}`, heroDataWithoutId);
   }
 
+  //delete
+  deleteHero(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
 }

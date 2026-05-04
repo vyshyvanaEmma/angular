@@ -18,4 +18,13 @@ export class HeroCard {
   notifyParent() {
     this.onMissionDone.emit(this.hero()._id);
   }
+
+  @Output() onDelete = new EventEmitter<string>();
+
+  elimina(event: Event) {
+    event.stopPropagation();
+
+    this.onDelete.emit(this.hero()._id);
+
+  }
 }

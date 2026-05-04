@@ -6,5 +6,6 @@ export const routes: Routes = [
   { path: '', component: HeroList },
   { path: 'edit', component: HeroEdit },
   { path: 'edit/:id', component: HeroEdit },
+  { path: 'delete/:id', component: HeroEdit },
   { path: '**', redirectTo: '' }
 ];

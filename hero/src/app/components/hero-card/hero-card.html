@@ -3,9 +3,9 @@
   <h3>{{ hero().nome | uppercase }}</h3>
   <p class="power-text">💥 Super Potere: <span>{{ hero().potere }}</span></p>
 
-  <button class="crazy-button" 
-          (click)="$event.stopPropagation(); notifyParent()" 
-          [disabled]="hero().completata">
+  <button class="delete-btn" (click)="elimina($event)">🗑️</button>
+
+  <button class="crazy-button" (click)="$event.stopPropagation(); notifyParent()" [disabled]="hero().completata">
     {{ hero().completata ? 'MISSIONE COMPIUTA! 🎉' : 'VAI IN MISSIONE! 🔥' }}
   </button>
 </div>
